@@ -14,14 +14,19 @@ namespace LogServerProject
         private Thread listenThread;
 
         private int cnt_id;
-        public Server()
+        public Server(string ip)
         {
             cnt_id = 0;
+            Console.WriteLine("Initial Server ...");
+            Console.WriteLine("Build " + ip);
 
-            IPAddress localAddr = IPAddress.Parse("192.168.152.205");
+            //IPAddress localAddr = IPAddress.Parse("192.168.152.205");
+            IPAddress localAddr = IPAddress.Parse(ip);
             this.tcpListener = new TcpListener(localAddr, 13000);
             this.listenThread = new Thread(new ThreadStart(ListenForClients));
             this.listenThread.Start();
+
+            Console.WriteLine("Build Server Success !");
         }
 
         private void ListenForClients()

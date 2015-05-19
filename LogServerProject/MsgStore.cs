@@ -26,7 +26,7 @@ namespace Client
                     Console.WriteLine("CreateDirectory Failed !");
                 else
                 {
-                    Console.WriteLine("CreateDirectory Success !");
+                    //Console.WriteLine("CreateDirectory Success !");
 
 
                     FileInfo file = new FileInfo(path + "/" + username + day + ".txt");
