@@ -22,7 +22,11 @@ namespace LogServerProject
 
         public void Login(string username)
         {
-            Console.WriteLine(username + " 登入");
+
+            string day = DateTime.Now.ToString("yyyy-MM-dd");
+            string time = DateTime.Now.ToString("HH:mm:ssss");
+
+            Console.WriteLine(username + " 登入. " + day + " " + time);
             blogin = true;
             Username = username;
         }

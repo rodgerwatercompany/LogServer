@@ -99,7 +99,10 @@ namespace LogServerProject
                 
             }
             clientObj.tcpclient.Close();
-            Console.WriteLine("Client id " + clientObj.ID + "中斷連線");
+
+            string day = DateTime.Now.ToString("yyyy-MM-dd");
+            string time = DateTime.Now.ToString("HH:mm:ssss");
+            Console.WriteLine("Client id " + clientObj.ID + "中斷連線. " + day  + " " + time);
             clientObj.tcpclient = null;
             clientObj = null;
         }
