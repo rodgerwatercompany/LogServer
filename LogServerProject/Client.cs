@@ -1,8 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace LogServerProject
 {
@@ -22,7 +19,6 @@ namespace LogServerProject
 
         public void Login(string username)
         {
-
             string day = DateTime.Now.ToString("yyyy-MM-dd");
             string time = DateTime.Now.ToString("HH:mm:ssss");
 
@@ -30,7 +26,5 @@ namespace LogServerProject
             blogin = true;
             Username = username;
         }
-
-
     }
 }
