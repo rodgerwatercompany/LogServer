@@ -20,11 +20,25 @@ namespace LogServerProject
         public void Login(string username)
         {
             string day = DateTime.Now.ToString("yyyy-MM-dd");
-            string time = DateTime.Now.ToString("HH:mm:ssss");
+            string time = DateTime.Now.ToString("HH-mm-ssss");
 
             Console.WriteLine(username + " 登入. " + day + " " + time);
             blogin = true;
-            Username = username;
+
+            if (username == "LNBTime")
+            {
+                Username = "Login " + day + " " + time;
+            }
+            else
+            {
+
+                char[] remove = new char[] { ':', '\\', '/', '*', '?', '"', '<', '>', '|' };
+
+                for (int i = 0; i < remove.Length; i++)
+                    username = username.Replace(remove[i], ' ');
+
+                Username = username;
+            }
         }
     }
 }
