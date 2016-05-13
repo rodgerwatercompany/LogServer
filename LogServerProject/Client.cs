@@ -9,6 +9,7 @@ namespace LogServerProject
         public int ID;
         public bool blogin;
         public string Username;
+        public string gameScene;
 
         public ClientObject(TcpClient tcp,int id)
         {
@@ -20,7 +21,7 @@ namespace LogServerProject
         public void Login(string username)
         {
             string day = DateTime.Now.ToString("yyyy-MM-dd");
-            string time = DateTime.Now.ToString("HH-mm-ssss");
+            string time = DateTime.Now.ToString("HH-mm-ssff");
 
             Console.WriteLine(username + " 登入. " + day + " " + time);
             blogin = true;
@@ -39,6 +40,15 @@ namespace LogServerProject
 
                 Username = username;
             }
+        }
+        public void GameScene(string gamescene)
+        {
+            
+            string day = DateTime.Now.ToString("yyyy-MM-dd");
+            string time = DateTime.Now.ToString("HH-mm-ssff");
+
+            Console.WriteLine(Username + " 正在玩" + gameScene + " " +  day + " " + time);
+
         }
     }
 }

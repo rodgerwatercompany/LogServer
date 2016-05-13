@@ -82,7 +82,7 @@ namespace LogServerProject
                 //Console.WriteLine("收到 " + clientObj.ID + str_msg);
                 if (clientObj.blogin)
                 {
-                    MsgStore.Store(clientObj.Username, str_msg);
+                    Operation(clientObj.Username, clientObj.gameScene, str_msg);
                 }
                 else
                 {
@@ -95,16 +95,30 @@ namespace LogServerProject
                             clientObj.Login(str_username);
                         }
                     }
+                    else if(str_msg.Contains("Login GameScene:"))
+                    {
+                        string str_gamescene = str_msg.Substring(16);
+
+                        if (!string.IsNullOrEmpty(str_gamescene))
+                        {
+                            clientObj.GameScene(str_gamescene);
+                        }
+                    }
                 }
                 
             }
             clientObj.tcpclient.Close();
 
             string day = DateTime.Now.ToString("yyyy-MM-dd");
-            string time = DateTime.Now.ToString("HH:mm:ssss");
+            string time = DateTime.Now.ToString("HH:mm:ssff");
             Console.WriteLine("Client id " + clientObj.ID + "中斷連線. " + day  + " " + time);
             clientObj.tcpclient = null;
             clientObj = null;
+        }
+
+        void Operation(string username,string gamescene,string msg)
+        {
+            MsgStore.Store(username, gamescene, msg);
         }
     }
 }

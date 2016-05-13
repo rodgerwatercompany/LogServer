@@ -6,12 +6,12 @@ namespace Client
     public class MsgStore
     {
 
-        static public void Store(string username,string msg)
+        static public void Store(string username,string gamescene,string msg)
         {
             
             string day = DateTime.Now.ToString("yyyy-MM-dd");
-            string time = DateTime.Now.ToString("HH:mm:ssss");
-            msg = time + " - " + msg;
+            string time = DateTime.Now.ToString("HH:mm:ssff");
+            msg = time + " - " + msg + gamescene;
             
             //string path = @"C:\Users\rodger_chen\Documents\Others\NightMarket_Log";
             string path = @".\" + username ;
