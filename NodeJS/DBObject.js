@@ -30,7 +30,7 @@ function DBObject () {
     this.update = function() {
         var cmd ='insert into game5044(ID_LOG,AccountName,bFreeGame,FG_Size,bAllCards,AC_ID,bScatter,SC_GridNum,SC_ID,bJackpot,JP_ID)values';
 
-        var i,command;
+        var i, command;
 
         if(this.logQueue.length > 0) {
 
@@ -97,6 +97,8 @@ function DBObject () {
     }.bind(this);
 
     this.release = function() {
+
+        console.log("DB have released.");
         this.conn.end();
     }.bind(this);
 

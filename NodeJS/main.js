@@ -73,6 +73,6 @@ wss.on('connection',function open(ws){
     });
 
     ws.on("close",function(){
-        console.log("websocket connection is close");
+        console.log(client.MachineName + " websocket connection is close");
     });
 });

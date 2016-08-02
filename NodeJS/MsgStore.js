@@ -11,13 +11,13 @@ function MsgStore () {
     };
 
     this.store = function(gameName,machineName,msg,logID){
-        var path = "C:/Users/rodger_chen/Desktop/log/" + gameName + "/" + machineName + this.date + ".txt"
+        var path = "C:/Users/rodger_chen/Desktop/log/" + gameName + "/" + machineName + ".txt";
 
         var data = logID + " " + msg + "\r\n";
 
         fs.appendFile(path, data, function(err) {
             if(err) {
-                console.log(err);
+                console.log("appendFile have error : " + err);
             }
         });
     }.bind(this);;
