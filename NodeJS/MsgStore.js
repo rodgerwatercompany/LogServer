@@ -13,7 +13,7 @@ function MsgStore () {
     this.store = function(gameName,machineName,msg,logID){
         var path = "C:/Users/rodger_chen/Desktop/log/" + gameName + "/" + machineName + ".txt";
 
-        var data = logID + " " + msg + "\r\n";
+        var data = moment().format('HH:mm:sss') + " " + msg + "\r\n";
 
         fs.appendFile(path, data, function(err) {
             if(err) {

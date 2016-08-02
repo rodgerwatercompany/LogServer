@@ -8,6 +8,8 @@ var MsgStore = require("./MsgStore.js");
 var DBObject = require("./DBObject.js");
 
 
+var moment = require('./moment.js');
+
 // Initial Server
 app.use(express.static(__dirname + "/"));
 
@@ -28,7 +30,7 @@ wss.on('connection',function open(ws){
     client.AccountName = "";
     client.MachineName = "";
     client.GameName = "";
-
+        
     ws.send("Server say hi!");
     ws.on("message",function(msg){
 
@@ -40,9 +42,18 @@ wss.on('connection',function open(ws){
                 client.AccountName = msgObj.AccountName;
                 client.MachineName = msgObj.MachineName;
                 client.GameName = msgObj.GameName;
-                console.log(client.AccountName + " have Inited !");
-                console.log("client.MachineName : " + client.MachineName);
-                console.log("client.GameName : " + client.GameName);
+
+                var str_logInfo = "*****************************" + "\r\n";
+                str_logInfo += (client.AccountName + " have Inited !" + "\r\n" + "client.MachineName : " + client.MachineName + "\r\n"
+                + "client.GameName : " + client.GameName + "\r\n" + client.MachineName + " login time : " + moment().format('HH:mm:sss YYYY-MM-DD') + "\r\n");
+                str_logInfo += "*****************************" + "\r\n";
+
+                console.log(str_logInfo);
+
+                //console.log(client.AccountName + " have Inited !");
+                //console.log("client.MachineName : " + client.MachineName);
+                //console.log("client.GameName : " + client.GameName);
+                //console.log(client.MachineName + " login time : " + moment().format('HH:mm:sss YYYY-MM-DD'));
                 break;
             case 1:
                 msgStore.store(client.GameName,client.MachineName,msgObj.msg);
@@ -72,7 +83,11 @@ wss.on('connection',function open(ws){
         }
     });
 
-    ws.on("close",function(){
-        console.log(client.MachineName + " websocket connection is close");
+    ws.on("close", function () {
+        
+        var str_logoutInfo = "*****************************" + "\r\n";
+        str_logoutInfo += (client.MachineName + " websocket connection is close" + "\r\n" + client.MachineName + " left at " + moment().format('HH:mm:sss YYYY-MM-DD') + "\r\n");
+        str_logoutInfo += "*****************************" + "\r\n";
+        console.log(str_logoutInfo);
     });
 });
