@@ -5,7 +5,6 @@ var app = express();
 var port = 13000;
 
 var MsgStore = require("./MsgStore.js");
-var DBObject = require("./DBObject.js");
 
 
 var moment = require('./moment.js');
@@ -22,7 +21,6 @@ var wss = new WebSocketServer({server: server});
 console.log("websocket server created");
 
 var msgStore = new MsgStore();
-var dbObject = new DBObject();
 
 wss.on('connection',function open(ws){
 
@@ -33,7 +31,6 @@ wss.on('connection',function open(ws){
         
     ws.send("Server say hi!");
     ws.on("message",function(msg){
-
 
         var msgObj = JSON.parse(msg);
         switch (msgObj.type) {
@@ -63,19 +60,7 @@ wss.on('connection',function open(ws){
                     msgStore.store(client.GameName,client.MachineName,msgObj.msg , msgObj.logID);
 
                     if (msgObj.logID != "") {
-                        dbObject.addLog({
-                            "ID_LOG": msgObj.logID,
-                            "AccountName": msgObj.AccountName,
-                            "bFG": msgObj.bFG,
-                            "FG_Size": msgObj.bFG_Size,
-                            "bAllCards": msgObj.bAllCards,
-                            "AC_ID": msgObj.AC_ID,
-                            "bScatter": msgObj.bScatter,
-                            "SC_GridNum": msgObj.SC_GridNum,
-                            "SC_ID": msgObj.SC_ID,
-                            "bJP": msgObj.bJP,
-                            "JP_ID": msgObj.JP_ID
-                        });
+                        
                     }
                 }
                 break;
